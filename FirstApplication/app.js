@@ -1,10 +1,20 @@
 
 var http = require('http');
+var fs = require('fs');
+
 
 var server = http.createServer(function (req, res) {
 
-    res.write("<html><body><h1>H1 Label</h1></body></html>");
-    res.end("Message end")
+
+
+    fs.readFile('index.html', function (err, data) {
+
+        res.write(data)
+
+        res.end("Message end")
+
+    })
+
 
 
 });
