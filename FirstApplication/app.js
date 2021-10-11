@@ -6,14 +6,33 @@ var fs = require('fs');
 var server = http.createServer(function (req, res) {
 
 
+    console.log(req.url);
 
-    fs.readFile('index.html', function (err, data) {
 
-        res.write(data)
+    if (req.url == '/') {
 
-        res.end("Message end")
+        fs.readFile('index.html', function (err, data) {
 
-    })
+            res.write(data)
+
+            res.end("Message end")
+
+        })
+
+    } else if (req.url == '/profile') {
+
+        fs.readFile('profile.html', function (err, data) {
+
+            res.write(data)
+
+            res.end("Message end")
+
+        })
+
+
+    }
+
+
 
 
 
