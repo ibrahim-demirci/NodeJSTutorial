@@ -1,42 +1,33 @@
-
-var http = require('http');
 var fs = require('fs');
+const { profile } = require('console');
 
+var express = require('express');
+const path = require('path');
+var app = express();
 
-var server = http.createServer(function (req, res) {
+app.use('/public', express.static(path.join(__dirname, 'public')));
 
+app.get('/', function (req, res) {
 
-    console.log(req.url);
+    fs.readFile('index.html', function (err, data) {
 
+        res.write(data)
+        res.end("Message end")
 
-    if (req.url == '/') {
+    })
 
-        fs.readFile('index.html', function (err, data) {
+})
+app.get('/profile', function (req, res) {
 
-            res.write(data)
-            res.end("Message end")
+    fs.readFile('profile.html', function (err, data) {
 
-        })
+        res.write(data)
+        res.end("Message end")
 
-    } else if (req.url == '/profile') {
+    })
 
-        fs.readFile('profile.html', function (err, data) {
+})
 
-            res.write(data)
-            res.end("Message end Profile")
-
-        })
-
-
-    }
-
-
-
-
-
-});
-
-
-server.listen(8000);
+app.listen(8000);
 
 
