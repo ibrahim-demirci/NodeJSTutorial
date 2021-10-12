@@ -14,7 +14,6 @@ var server = http.createServer(function (req, res) {
         fs.readFile('index.html', function (err, data) {
 
             res.write(data)
-
             res.end("Message end")
 
         })
@@ -24,8 +23,7 @@ var server = http.createServer(function (req, res) {
         fs.readFile('profile.html', function (err, data) {
 
             res.write(data)
-
-            res.end("Message end")
+            res.end("Message end Profile")
 
         })
 
