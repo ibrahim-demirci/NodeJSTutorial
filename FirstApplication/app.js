@@ -7,26 +7,19 @@ var app = express();
 
 app.use('/public', express.static(path.join(__dirname, 'public')));
 
-app.get('/', function (req, res) {
+var indexController = function (req, res) {
 
-    fs.readFile('index.html', function (err, data) {
+    res.sendFile(path.join(__dirname, 'index.html'));
 
-        res.write(data)
-        res.end("Message end")
+}
+var profileController = function (req, res) {
 
-    })
+    res.sendFile(path.join(__dirname, 'profile.html'));
 
-})
-app.get('/profile', function (req, res) {
+}
 
-    fs.readFile('profile.html', function (err, data) {
-
-        res.write(data)
-        res.end("Message end")
-
-    })
-
-})
+app.get('/', indexController);
+app.get('/profile', profileController);
 
 app.listen(8000);
 
